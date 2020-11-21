@@ -32,6 +32,8 @@
     "src"
   ],
   "exclude": [
+   "src/**/*.stories.tsx",
+   "src/**/*.test.(ts|tsx)",
     "node_modules",
     "dist",
     "example"
