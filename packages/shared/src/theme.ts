@@ -1,8 +1,8 @@
 export const BtnType = (btnType: string) => {
   const btnTypes = {
     default: 'bg-white hover:bg-gray-700 text-gray-700 font-bold rounded disabled:opacity-50',
-    primary: 'bg-primary hover:bg-accent text-white font-bold rounded disabled:opacity-50',
-    secondary: 'bg-secondary hover:bg-accent text-white font-bold rounded disabled:opacity-50'
+    primary: 'bg-primary hover:bg-blue-600 text-white font-bold rounded disabled:opacity-50',
+    secondary: 'bg-secondary hover:bg-secondary text-white font-bold rounded disabled:opacity-50'
   }
   return (btnTypes[btnType] || btnTypes['default'])
 }
