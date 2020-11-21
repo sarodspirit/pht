@@ -1,22 +1,23 @@
 import * as React from 'react'
 
-const ThemeContext = React.createContext({theme: {}, setTheme: undefined})
+const ThemeContext = React.createContext({theme: undefined, setTheme: undefined})
 
 export interface Props {
   children: React.ReactNode
   theme: Record<string, string>
 }
 const ThemeProvider = ({ theme={}, children}:Props) => {
-  const setTheme = (_theme: Partial<Map<string, string>>)=>{
-        Object.keys(_theme).forEach((key:string)=>{
-            document.documentElement.style.setProperty(`--${key}`, _theme[key])
-        })
-    }
-    setTheme(theme)
-  return <ThemeContext.Provider value={{theme, setTheme}}>{children}</ThemeContext.Provider>
+  const [state, setState] = React.useState(theme)
+  React.useEffect(()=>{
+    Object.keys(state).forEach((key:string)=>{
+      document.documentElement.style.setProperty(`--${key}`, state[key])
+  })
+  },[state])
+  return <ThemeContext.Provider value={{theme:state, setTheme:setState}}>{children}</ThemeContext.Provider>
 }
-const useTheme = (newTheme: Record<string, string>)=>{
-    const {setTheme} = React.useContext(ThemeContext)
-    setTheme(newTheme)
+const useTheme = ()=>{
+    const context =   React.useContext(ThemeContext)
+    if(context.theme === undefined) throw new Error('useTheme hook can only be used inside ThemeProvider')
+    return context
 }
 export { useTheme, ThemeProvider }
