@@ -1,22 +1,31 @@
 import * as React from 'react'
 import classnames from 'classnames'
 
-import { BtnType, BtnSize } from '../theme'
+import BtnStyles from './style'
 interface props {
   children: string
   size?: string
-  type?: string
+  color?: string
   disabled?: boolean
+  outlined?: boolean
+  link?: boolean
 }
 const Button: React.FC<props> = ({
   children,
   size = 'default',
-  type = 'primary',
+  color = 'primary',
+  outlined = false,
+  link = false,
   disabled = false
+
 }) => {
-  const buttonTypeClasses = React.useMemo(() => BtnType(type), [type])
-  const buttonSizeClasses = React.useMemo(() => BtnSize(size), [size])
-  const className = classnames(buttonTypeClasses, buttonSizeClasses)
+  const classes = React.useMemo(() => BtnStyles(color, size), [color]) 
+  const className = classnames(
+    { [classes.btnFilled]: (!outlined && !link) },
+    { [classes.btnOutlined]: outlined },
+    { [classes.btnLink]: link },
+    classes.btnSize
+  )
   return (
     <button
       disabled={disabled}

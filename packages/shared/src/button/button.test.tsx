@@ -10,7 +10,7 @@ describe('Button', () => {
     render(<Button>My Button</Button>)
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="bg-primary hover:bg-blue-600 text-white font-bold rounded disabled:opacity-50 py-2 px-4 text-sm"
+        class="bg-primary-500 hover:shadow-md active:bg-primary-700 outline-none focus:outline-none uppercase text-white font-bold rounded disabled:opacity-50 py-2 px-4 text-sm"
         style="transition: all .15s ease;"
         type="button"
       >

@@ -4,8 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
+        primary: {
+          500:'var(--primary-500)',
+          700:'var(--primary-700)',
+        },
+        secondary: {
+          500:'var(--secondary-500)',
+          700:'var(--secondary-700)',
+        },
+        accent:'var(--accent)',
         main: 'var(--main)',
         background: 'var(--background)'
       }
